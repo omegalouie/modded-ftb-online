@@ -1,3 +1,4 @@
+
 function drawMovement() {
 
 	offset.totalx += accel.x;
@@ -110,7 +111,6 @@ function drawTank() {
 	ctx.restore();
 	}
 
-
 	//Protector Base
 	if (shape === "base") {
 	ctx.save();
@@ -143,7 +143,7 @@ function drawTank() {
 	ctx.fill();
 	ctx.restore();
 	}
-
+	
 	if (editmode === false) {
 		if (document.getElementById("spawn").checked === true) {
 			if (shapetimer > document.getElementById("shaperate").value) {
@@ -391,7 +391,7 @@ function drawTank() {
 		}
 
 		if ((bullets[n].type === 1) && (bullets[n].speed > 0)) {
-			bullets[n].speed -= bullets[n].speed * 0.025;
+			bullets[n].speed -= bullets[n].speed * 0.005;
 			//If it's a trap, decrease speed each tick.
 		}
 
@@ -399,7 +399,7 @@ function drawTank() {
 			bullets[n].targetx = mouse.x;
 			bullets[n].targety = mouse.y;
 
-			bullets[n].x += xdistancefrom((bullets[n].x, bullets[n].y, bullets[n].targetx, bullets[n].targety, bullets[n].speed) / 2, 0) + (offset.totalx - bullets[n].initoffx);
+			bullets[n].x += xdistancefrom(bullets[n].x, bullets[n].y, bullets[n].targetx, bullets[n].targety, bullets[n].speed / 2, 0) + (offset.totalx - bullets[n].initoffx);
 
 			bullets[n].y += ydistancefrom(bullets[n].x, bullets[n].y, bullets[n].targetx, bullets[n].targety, bullets[n].speed / 2, 0) + (offset.totaly - bullets[n].initoffy);
 
@@ -530,6 +530,7 @@ function drawTank() {
 
 	var tanksize = parseFloat(validateField(document.getElementById("body").value, 32));
 	var shape = document.getElementById("shape").value;
+
 
 	if (shape === "circle") {
 		ctx.save();
@@ -1558,7 +1559,7 @@ function drawTank() {
 		ctx.restore();
 		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
-	
+
 	if (shape === "megaspike") {
 		
 		ctx.save();
@@ -1761,35 +1762,30 @@ function drawTank() {
 		ctx.fill();
 		ctx.restore();
 	}
-	
+
 
 	if (shape === "decoy") {
-		ctx.save();
-		ctx.beginPath();
-		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
-		ctx.closePath();
-		ctx.clip();
-		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
-		ctx.restore();
-		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
-		
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
 		ctx.fillStyle = "#555555";
 		ctx.translate(tankpointx, tankpointy);
 		ctx.beginPath();
-		
 		if (editmode === false) {
 			ctx.rotate(angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180));
 		}
-		ctx.rotate(210 * (Math.PI / 180));
-		ctx.moveTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 3) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 7));
-		ctx.rotate((360 / 3) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 7));
-		ctx.rotate((360 / 3) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.rotate((360 / 6) * (Math.PI / 180));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.rotate((360 / 6) * (Math.PI / 180));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.rotate((360 / 6) * (Math.PI / 180));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.rotate((360 / 6) * (Math.PI / 180));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.rotate((360 / 6) * (Math.PI / 180));
+		ctx.lineTo(tanksize + (mouse.x), tanksize + (mouse.y));
+		ctx.rotate((360 / 6) * (Math.PI / 180));
 
 		ctx.closePath();
 		ctx.clip();
@@ -1798,12 +1794,15 @@ function drawTank() {
 		ctx.translate(tankpointx, tankpointy);
 		ctx.fill();
 		ctx.restore();
-		
+
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
+		ctx.fillStyle = document.getElementById("color").value;
 		ctx.beginPath();
+		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.fill();
+		ctx.restore();
 	}
 
 	//Draw the body of the tank on top of everything.

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<title>Modded Fantasy Tank Builder</title>
+	<title>Modded FTB</title>
 	<head>
 		<link rel="stylesheet" href="normalize.css" />
 		<link rel="stylesheet" href="styles.css" />
@@ -8,9 +8,8 @@
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<!--If you remove the following line, the code might break in some browsers.-->
 		<meta charset="utf8" />
-		<meta name="description" content="Build a fantasy diep.io tank! Made by iblobtouch on Github." />
-		<meta name="keywords" content="diep.io,tank,ftb,fantasy tank,io" />
-		<meta name="author" content="iblobtouch" />
+		<meta name="description" content="FTB but modded. Prepare your anus." />
+		<meta name="keywords" content="diep.io,tank,ftb,fantasy tank,io,modded" />
 	</head>
 	<body onload="onload()">
 		<noscript>
@@ -59,7 +58,15 @@
 
 		<!-- Changelog -->
 		<p class="editbuttons changelog pos1label"><b>Changelog</b><span data-tooltip="Originally created by iblobtouch, modded by Fillygroove" class="info">ⓘ</span></p>
-		<textarea class="editbuttons changelog pos1 scrollbox textarea" readonly id="change">	Modded FTB v1.0.0
+		<textarea class="editbuttons changelog pos1 scrollbox textarea" readonly id="change">	Modded FTB v1.1.0
+•Added a Pentagon Color Preset as I forgot to do so last updoot.
+•Everyone seems to be bashing me to fix Decoy, so I fixed it.
+•Changed the physics of traps again.
+•Fixed the Instructions.
+•Adjusted the Textbox for inflation.
+•Fixed the multiple bugs with Drones.
+•Changed the Tab Title from "Modded Fantasy Tank Builder" to "Modded FTB".
+	Modded FTB v1.0.0
 •Added Eggs, Hexagons, Heptagons, Octagons, and Nonagons
 •Added more color presets, including, but not limited too Hexagon Tan and Heptagon Magenta.
 •Added more body presets, including, but not limited too Saw and Dodecagon.
@@ -69,8 +76,7 @@
 •Changed colors for the interface.
 •Changed the physics of traps.
 •Added this here changelog and its corresponding button.
-•Renamed the Edit Mode button to Toggle Edit.
-</textarea>
+•Renamed the Edit Mode button to Toggle Edit.</textarea>
 
 		<!-- Body menu -->
 		<p class="editbuttons tanksettings pos1label"><b>Radius </b><span data-tooltip="Specifies the radius of the tank's main body." class="info">ⓘ</span></p>
@@ -96,7 +102,7 @@
 			<option value="saw">Saw</option>
 			<option value="base">Base</option>
 			<option value="megaspike">Mega Spike (WIP)</option>
-			<option value="decoy">Decoy (WIP)</option>
+			<option value="decoy">Decoy</option>
 			<option value="invisible">Invisible</option>
 		</select>
 		
@@ -119,6 +125,7 @@
 		<input type="button" class="editbuttons tanksettings pos3 presetmagenta" id="setcolormagenta" onclick="setColor('#AD009C')" title="Heptagon Magenta" />		
 		<input type="button" class="editbuttons tanksettings pos3 presetdarkred" id="setcolordarkred" onclick="setColor('#CA5E5F')" title="Octagon Dark Red" />		
 		<input type="button" class="editbuttons tanksettings pos3 presetnavyblue" id="setcolornavyblue" onclick="setColor('#5E71CA')" title="Nonagon Navy Blue" />		
+		<input type="button" class="editbuttons tanksettings pos3 presetdeepblue" id="setcolordeepblue" onclick="setColor('#768dFC')" title="Pentagon Blue" />		
 		<p class="editbuttons tanksettings pos4label"><b>Invisibility </b><span data-tooltip="Toggles fadeout invisibility for tanks. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
 		<div class="editbuttons tanksettings pos4 toggle">
 			<input type="checkbox" value="None" id="invis" name="check" />
@@ -200,6 +207,6 @@
 		<textarea class="editbuttons savesettings pos1 box" id="save" placeholder="Tank Codes go here..."></textarea>
 
 		
-		<p class="editbuttons" id="notes"><kbd>Q</kbd> to place barrels. Barrels place in order of last placed to first. <br /> <kbd>F</kbd> to remove barrels. WARNING: Removes all barrels within 1° at once! <br /> Hold <kbd>Shift</kbd> to align in 15° increments. Orange line determines front of tank. <br /> <kbd>Ctrl</kbd> + Scroll Wheel to adjust zoom (limited in some browsers). <br /> Alternatively, try <kbd>Ctrl</kbd> + <kbd>+</kbd> to zoom in, and <kbd>Ctrl</kbd> + <kbd>-</kbd> to zoom out. <br /> Click outside of textboxes before placing or removing barrels. </p>
+		<p class="editbuttons" id="notes"><kbd>Q</kbd> to place barrels. Barrels place in order of last placed to first. <br /> <kbd>F</kbd> to remove barrels. WARNING: Removes all barrels within 1° at once! <br /> Hold <kbd>Shift</kbd> to align in 7.5° increments. Orange line determines front of tank. <br /> <kbd>Ctrl</kbd> + Scroll Wheel to adjust zoom (limited in some browsers). <br /> Alternatively, try <kbd>Ctrl</kbd> + <kbd>+</kbd> to zoom in, and <kbd>Ctrl</kbd> + <kbd>-</kbd> to zoom out. <br /> Click outside of textboxes before placing or removing barrels. </p>
 	</body>
 </html>

@@ -395,7 +395,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #F14E54;
+	background-color: #e03e41;
 }
 
 .presetblue {
@@ -405,7 +405,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #00B2E1;
+	background-color: #3ca4cb;
 }
 
 .presetgreen {
@@ -415,7 +415,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #00E16E;
+	background-color: #8abc3f;
 }
 
 .presetpurple {
@@ -425,7 +425,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #BF7FF5;
+	background-color: #cc669c;
 }
 
 .presetyellow {
@@ -435,7 +435,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #FFEB69;
+	background-color: #fdf380;
 }
 
 .presetlightgrey {
@@ -455,7 +455,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #FC7677;
+	background-color: #e7896d;
 }
 
 .presetviolet {
@@ -465,7 +465,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #F177DD;
+	background-color: #ef99c3;
 }
 
 .presetgrey {
@@ -475,7 +475,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #999999;
+	background-color: #a7a7a7;
 }
 
 .presetdarkgrey {
@@ -485,7 +485,7 @@ kbd {
 	border: 1px solid #555555;
 	height: 12px;
 	width: 12px;
-	background-color: #555555;
+	background-color: #484848;
 }
 
 .presetbrown {

@@ -933,14 +933,6 @@ function drawTank() {
 			drawConc(tankpointx, tankpointy, tanksize+3, 270, document.getElementById("color").value, 3, (tanksize+3)/1.5)
 		}
 }
-	if (shape === "text") {
-		ctx.globalAlpha = tankalpha;
-		if (editmode === false) {
-			drawConc(tankpointx, tankpointy, tanksize+7, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+270), document.getElementById("color").value, 7, (tanksize+7)/1.5)
-			} else {
-			drawConc(tankpointx, tankpointy, tanksize+7, 270, document.getElementById("color").value, 7, (tanksize+7)/1.5)
-		}
-}
 	if (shape === "boomer") {
 		ctx.globalAlpha = tankalpha;
 		if (editmode === false) {
@@ -972,6 +964,14 @@ function drawTank() {
 			drawPoly(tankpointx, tankpointy, tanksize/1.5, 45, document.getElementById("bcolo").value, 4)
 		}
 	}
+	if (shape === "heptastar") {
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawConc(tankpointx, tankpointy, tanksize+7, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+90), document.getElementById("color").value, 7, (tanksize+7)/1.5)
+			} else {
+			drawConc(tankpointx, tankpointy, tanksize+7, 90, document.getElementById("color").value, 7, (tanksize+7)/1.5)
+		}
+}
 	//Draw the body of the tank on top of everything.
 	
 	for (var n = 0; n < barrels.length; n += 1) {

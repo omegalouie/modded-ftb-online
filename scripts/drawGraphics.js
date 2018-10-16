@@ -3,7 +3,8 @@ function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type) {
     if (newGraph === false) {
 	   ctx.strokeStyle = "rgba(85, 85, 85, " + alpha + ")";
     } else {
-        ctx.strokeStyle = ColorLuminance(document.getElementById("bcolo").value, -0.2);
+		var luminance = parseFloat(validateField(document.getElementById("luminance").value, -0.2));
+        ctx.strokeStyle = ColorLuminance(document.getElementById("bcolo").value, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = document.getElementById("bcolo").value;
@@ -71,7 +72,7 @@ function drawBullet(x, y, size, transparency) {
     if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, -0.2);
+        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = document.getElementById("color").value;
@@ -89,7 +90,7 @@ function drawTrap(x, y, size, angle, transparency) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, -0.2);
+        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = document.getElementById("color").value;
@@ -120,7 +121,7 @@ function drawDrone(x, y, size, angle, color) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, -0.2);
+        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = color;
@@ -146,7 +147,7 @@ function drawNecro(x, y, size, angle, color) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(color, -0.2);
+        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 10;
 	ctx.translate(x, y);
@@ -172,7 +173,7 @@ function drawPentagon(x, y, size, angle, color) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(color, -0.2);
+        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = color;
@@ -201,7 +202,7 @@ function drawPoly(x, y, size, angle, color, sides) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(color, -0.2);
+        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = color;
@@ -222,7 +223,7 @@ function drawConc(x, y, size, angle, color, sides, poly) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(document.getElementById("color").value, -0.2);
+        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = color;
@@ -245,7 +246,7 @@ function drawRect(x, y, size, angle, color) {
 	if (newGraph === false) {
 	   ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(color, -0.2);
+        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
     }
 	ctx.lineWidth = 5;
 	ctx.fillStyle = color;

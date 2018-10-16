@@ -85,61 +85,25 @@ function drawTank() {
 	if (shape === "dominator") {
 	ctx.save();
 	ctx.globalAlpha = tankalpha;
-	ctx.fillStyle = "#555555";
-	ctx.translate(tankpointx, tankpointy);
-	ctx.beginPath();
-	ctx.moveTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 6) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 6) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 6) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 6) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 6) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 6) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.closePath();
-	ctx.clip();
-	ctx.translate(-tankpointx, -tankpointy);
-	ctx.clearRect(0, 0, c.width, c.height);
-	ctx.translate(tankpointx, tankpointy);
-	ctx.fill();
-	ctx.restore();
+	ctx.fillStyle = document.getElementById("scolo").value;
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 6)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("scolo").value, 6)
+		}
 	}
 	//Protector Base
 	if (shape === "base") {
 	ctx.save();
 	ctx.globalAlpha = tankalpha;
-	ctx.fillStyle = "#555555";
-	ctx.translate(tankpointx, tankpointy);
-	ctx.beginPath();
-	ctx.moveTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.rotate((360 / 8) * (Math.PI / 180));
-	ctx.lineTo(0, tanksize + (tanksize / 3));
-	ctx.closePath();
-	ctx.clip();
-	ctx.translate(-tankpointx, -tankpointy);
-	ctx.clearRect(0, 0, c.width, c.height);
-	ctx.translate(tankpointx, tankpointy);
-	ctx.fill();
-	ctx.restore();
+	ctx.fillStyle = document.getElementById("scolo").value;
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y))+22.5, document.getElementById("scolo").value, 8)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 22.5, document.getElementById("scolo").value, 8)
+		}
 	}
 	if (editmode === false) {
 		if (document.getElementById("spawn").checked === true) {
@@ -548,42 +512,22 @@ function drawTank() {
 	if (shape === "smasher") {
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
+		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			ctx.rotate(angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180));
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 6)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("scolo").value, 6)
 		}
-		ctx.moveTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-
 		ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = document.getElementById("color").value;
 		ctx.beginPath();
 		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
 		ctx.closePath();
-		ctx.fill();
+		ctx.clip();
+		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
 		ctx.restore();
+		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
+	
 	if (shape === "triangle") {
 		ctx.globalAlpha = tankalpha;
 		if (editmode === false) {
@@ -603,179 +547,55 @@ function drawTank() {
 	if (shape === "mothership") {
 		ctx.globalAlpha = tankalpha;
 		if (editmode === false) {
-			drawPoly(tankpointx, tankpointy, tanksize, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("color").value, 16)
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("color").value, 16)
 		} else {
-			drawPoly(tankpointx, tankpointy, tanksize, 0, document.getElementById("color").value, 16)
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("color").value, 16)
 		}
 }
 	if (shape === "spike") {
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
+		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			ctx.rotate(angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180));
+			drawConc(tankpointx, tankpointy, tanksize*1.4, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 12, (tanksize+4)/1.2)
+			} else {
+			drawConc(tankpointx, tankpointy, tanksize*1.4, 0, document.getElementById("scolo").value, 12, (tanksize+4)/1.2)
 		}
-		ctx.moveTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 2));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 9));
-		ctx.rotate((360 / 36) * (Math.PI / 180));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-
 		ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = document.getElementById("color").value;
 		ctx.beginPath();
 		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
 		ctx.closePath();
-		ctx.fill();
+		ctx.clip();
+		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
 		ctx.restore();
+		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
-
 	if (shape === "landmine") {
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
+		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			ctx.rotate((angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180))/2);
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y))/2, document.getElementById("scolo").value, 6)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("scolo").value, 6)
 		}
-		ctx.moveTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
+		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			ctx.rotate(angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180));
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 6)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("scolo").value, 6)
 		}
-		ctx.moveTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-
 		ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = document.getElementById("color").value;
 		ctx.beginPath();
 		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
 		ctx.closePath();
-		ctx.fill();
+		ctx.clip();
+		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
 		ctx.restore();
+		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
-
 	if (shape === "dominator") {
 		ctx.save();
 		ctx.beginPath();
@@ -794,103 +614,6 @@ function drawTank() {
 			drawPoly(tankpointx, tankpointy, tanksize+6, 0, document.getElementById("color").value, 6)
 		}
 }
-	if (shape === "landmine2") {
-		ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
-		if (editmode === false) {
-			ctx.rotate((angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180)) * 1.5);
-		}
-		ctx.moveTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-
-				ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
-		if (editmode === false) {
-			ctx.rotate((angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180)) * 0.5);
-		}
-		ctx.moveTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-		
-		ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = "#555555";
-		ctx.translate(tankpointx, tankpointy);
-		ctx.beginPath();
-		if (editmode === false) {
-			ctx.rotate(angle(tankpointx, tankpointy, mouse.x, mouse.y) * (Math.PI / 180));
-		}
-		ctx.moveTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.rotate((360 / 6) * (Math.PI / 180));
-		ctx.lineTo(0, tanksize + (tanksize / 3));
-		ctx.closePath();
-		ctx.clip();
-		ctx.translate(-tankpointx, -tankpointy);
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.translate(tankpointx, tankpointy);
-		ctx.fill();
-		ctx.restore();
-
-		ctx.save();
-		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = document.getElementById("color").value;
-		ctx.beginPath();
-		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
-		ctx.closePath();
-		ctx.fill();
-		ctx.restore();
-	}
 	if (shape === "base") {
 		ctx.save();
 		ctx.beginPath();
@@ -925,14 +648,6 @@ function drawTank() {
 			drawConc(tankpointx, tankpointy, tanksize+5, 270, document.getElementById("color").value, 5, (tanksize+5)/2)
 		}
 }
-	if (shape === "convex3") {
-		ctx.globalAlpha = tankalpha;
-		if (editmode === false) {
-			drawConc(tankpointx, tankpointy, tanksize+3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+270), document.getElementById("color").value, 3, (tanksize+3)/1.5)
-			} else {
-			drawConc(tankpointx, tankpointy, tanksize+3, 270, document.getElementById("color").value, 3, (tanksize+3)/1.5)
-		}
-}
 	if (shape === "boomer") {
 		ctx.globalAlpha = tankalpha;
 		if (editmode === false) {
@@ -964,14 +679,24 @@ function drawTank() {
 			drawPoly(tankpointx, tankpointy, tanksize/1.5, 45, document.getElementById("bcolo").value, 4)
 		}
 	}
-	if (shape === "heptastar") {
+	if (shape === "t18") {
+		ctx.save();
 		ctx.globalAlpha = tankalpha;
+		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			drawConc(tankpointx, tankpointy, tanksize+7, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+90), document.getElementById("color").value, 7, (tanksize+7)/1.5)
-			} else {
-			drawConc(tankpointx, tankpointy, tanksize+7, 90, document.getElementById("color").value, 7, (tanksize+7)/1.5)
+			drawPoly(mouse.x, mouse.y, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 4)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("scolo").value, 4)
 		}
-}
+		ctx.save();
+		ctx.beginPath();
+		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.clip();
+		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
+		ctx.restore();
+		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
+	}
 	//Draw the body of the tank on top of everything.
 	
 	for (var n = 0; n < barrels.length; n += 1) {
@@ -1183,6 +908,9 @@ function setColor(color) {
 }
 function setBColor(bcolo) {
 	document.getElementById("bcolo").value = bcolo;
+}
+function setSColor(bcolo) {
+	document.getElementById("scolo").value = bcolo;
 }
 
 document.addEventListener("mousemove", mousemove, false);

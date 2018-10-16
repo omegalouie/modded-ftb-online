@@ -60,6 +60,11 @@
 		<!-- Changelog -->
 		<p class="editbuttons changelog pos1label"><b>Changelog</b><span data-tooltip="Originally created by iblobtouch, modded by Fillygroove" class="info">ⓘ</span></p>
 		<textarea class="editbuttons changelog pos1 scrollbox textarea" readonly id="change">
+		Modded FTB v1.3.2
+•Edited the Body Presets extensively.
+•Edited the Body/Color menu.
+•Added a new experimental slider titled Luminance.
+•Added a new experimental color selector for Smasher Shells.
 		Modded FTB v1.3.1
 •Changed some of the color presets.
 •Added yet another body preset.
@@ -108,19 +113,17 @@
 			<option value="landmine">Landmine</option>
 			<option value="dominator">Dominator</option>
 			<option value="hexagon">Hexagon</option>
-			<option value="landmine2">Landmine +</option>
 			<option value="base">Base</option>
 			<option value="trap">Trap</option>
 			<option value="build">Build. Trap</option>
 			<option value="star">Star</option>
-			<option value="convex3">Convex-3</option>
 			<option value="boomer">Boom. Trap</option>
 			<option value="rect">Rectangle</option>
 			<option value="drive">Drive</option>
-			<option value="heptastar">Hepta-Star</option>
+			<option value="t18">test-u18</option>
 		</select>
 		
-     		<p class="editbuttons tanksettings pos3label"><b>Body Color </b><span data-tooltip="Specifies what color should be used for the tank and bullets." class="info">ⓘ</span></p>
+     		<p class="editbuttons tanksettings pos3label"><b>Body Color </b></p>
 		<input type="color" class="editbuttons tanksettings pos3" id="color" value="#3ca4cb" data-tooltip="Specifies what color should be used for the tank and bullets.">
 		<input type="button" class="editbuttons tanksettings pos3 presetred" id="setcolorred" onclick="setColor('#e03e41')" title="Red Team" />
 		<input type="button" class="editbuttons tanksettings pos3 presetblue" id="setcolorblue" onclick="setColor('#3ca4cb')" title="Blue Team" />
@@ -130,7 +133,7 @@
 		<input type="button" class="editbuttons tanksettings pos3 presetlightgrey" id="setcolorlightgrey" onclick="setColor('#C0C0C0')" title="Fallen Tank" />
 		<input type="button" class="editbuttons tanksettings pos3 presetpalered" id="setcolorpalered" onclick="setColor('#e7896d')" title="Defender" />
 		<input type="button" class="editbuttons tanksettings pos3 presetviolet" id="setcolorviolet" onclick="setColor('#ef99c3')" title="Guardian" />
-		<input type="button" class="editbuttons tanksettings pos3 presetgrey" id="setcolorgrey" onclick="setColor('#a7a7af')" title="Grey" />
+		<input type="button" class="editbuttons tanksettings pos3 presetgrey" id="setcolorgrey" onclick="setColor('#999999')" title="Grey" />
 		<input type="button" class="editbuttons tanksettings pos3 presetdarkgrey" id="setcolordarkgrey" onclick="setColor('#484848')" title="Border Grey" />
 		<input type="button" class="editbuttons tanksettings pos3 presetbrown" id="setcolorbrown" onclick="setColor('#D68165')" title="Brown Team(Removed)" />
 		
@@ -146,23 +149,40 @@
 		<p class="editbuttons tanksettings pos6label"><b>Necro Limit </b><span data-tooltip="Specifies the maximum number of Necromancer type drones that can be on screen. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
 		<textarea class="editbuttons tanksettings pos6" id="necrodrones" rows="1" cols="10" placeholder="0" data-tooltip="Specifies the maximum number of Necromancer type drones that can be on screen. WARNING: Does not save to export. Yet.">16</textarea>
 		
-		<p class="editbuttons tanksettings pos7label"><b>Body Damage </b><span data-tooltip="Specifies the damage the body of the tank does to a shape on collision. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
-		<textarea class="editbuttons tanksettings pos7" id="bodydamage" rows="1" cols="10" placeholder="0" data-tooltip="Specifies the damage the body of the tank does to a shape on collision. WARNING: Does not save to export. Yet.">50</textarea>
+		<p class="editbuttons tanksettings pos9label"><b>Body Damage </b><span data-tooltip="Specifies the damage the body of the tank does to a shape on collision. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
+		<textarea class="editbuttons tanksettings pos9" id="bodydamage" rows="1" cols="10" placeholder="0" data-tooltip="Specifies the damage the body of the tank does to a shape on collision. WARNING: Does not save to export. Yet.">50</textarea>
 
-     	<p class="editbuttons tanksettings pos8label"><b>Barrel Color </b><span data-tooltip="Specifies what color should be used for the barrel." class="info">ⓘ</span></p>
-		<input type="color" class="editbuttons tanksettings pos8" id="bcolo" value="#999999" data-tooltip="Specifies what color should be used for the tank and bullets.">
-		<input type="button" class="editbuttons tanksettings pos8 presetred" id="setbcolorred" onclick="setBColor('#e03e41')" title="Red Team" />
-		<input type="button" class="editbuttons tanksettings pos8 presetblue" id="setbcolorblue" onclick="setBColor('#3ca4cb')" title="Blue Team" />
-		<input type="button" class="editbuttons tanksettings pos8 presetgreen" id="setbcolorgreen" onclick="setBColor('#8abc3f')" title="Green Team" />
-		<input type="button" class="editbuttons tanksettings pos8 presetpurple" id="setbcolorpurple" onclick="setBColor('#cc669c')" title="Purple Team" />
-		<input type="button" class="editbuttons tanksettings pos8 presetyellow" id="setbcoloryellow" onclick="setBColor('#FFEB69')" title="Arena Closer/No Team" />
-		<input type="button" class="editbuttons tanksettings pos8 presetlightgrey" id="setbcolorlightgrey" onclick="setBColor('#C0C0C0')" title="Fallen Tank" />
-		<input type="button" class="editbuttons tanksettings pos8 presetpalered" id="setbcolorpalered" onclick="setBColor('#FC7677')" title="Defender" />
-		<input type="button" class="editbuttons tanksettings pos8 presetviolet" id="setbcolorviolet" onclick="setBColor('#F177DD')" title="Guardian" />
-		<input type="button" class="editbuttons tanksettings pos8 presetgrey" id="setbcolorgrey" onclick="setBColor('#999999')" title="Grey" />
-		<input type="button" class="editbuttons tanksettings pos8 presetdarkgrey" id="setbcolordarkgrey" onclick="setBColor('#555555')" title="Border Grey" />
-		<input type="button" class="editbuttons tanksettings pos8 presetbrown" id="setbcolorbrown" onclick="setBColor('#D68165')" title="Brown Team(Removed)" />
-			
+     	<p class="editbuttons tanksettings pos7label"><b>Barrel Color </b></p>
+		<input type="color" class="editbuttons tanksettings pos7" id="bcolo" value="#999999" data-tooltip="Specifies what color should be used for the barrel. WARNING: Does not save to export. Yet.">
+		<input type="button" class="editbuttons tanksettings pos7 presetred" id="setbcolorred" onclick="setBColor('#e03e41')" title="Red Team" />
+		<input type="button" class="editbuttons tanksettings pos7 presetblue" id="setbcolorblue" onclick="setBColor('#3ca4cb')" title="Blue Team" />
+		<input type="button" class="editbuttons tanksettings pos7 presetgreen" id="setbcolorgreen" onclick="setBColor('#8abc3f')" title="Green Team" />
+		<input type="button" class="editbuttons tanksettings pos7 presetpurple" id="setbcolorpurple" onclick="setBColor('#cc669c')" title="Purple Team" />
+		<input type="button" class="editbuttons tanksettings pos7 presetyellow" id="setbcoloryellow" onclick="setBColor('#FFEB69')" title="Arena Closer/No Team" />
+		<input type="button" class="editbuttons tanksettings pos7 presetlightgrey" id="setbcolorlightgrey" onclick="setBColor('#C0C0C0')" title="Fallen Tank" />
+		<input type="button" class="editbuttons tanksettings pos7 presetpalered" id="setbcolorpalered" onclick="setBColor('#FC7677')" title="Defender" />
+		<input type="button" class="editbuttons tanksettings pos7 presetviolet" id="setbcolorviolet" onclick="setBColor('#F177DD')" title="Guardian" />
+		<input type="button" class="editbuttons tanksettings pos7 presetgrey" id="setbcolorgrey" onclick="setBColor('#999999')" title="Grey" />
+		<input type="button" class="editbuttons tanksettings pos7 presetdarkgrey" id="setbcolordarkgrey" onclick="setBColor('#555555')" title="Border Grey" />
+		<input type="button" class="editbuttons tanksettings pos7 presetbrown" id="setbcolorbrown" onclick="setBColor('#D68165')" title="Brown Team(Removed)" />
+
+     	<p class="editbuttons tanksettings pos11label"><b>Shell Color </b></p>
+		<input type="color" class="editbuttons tanksettings pos11" id="scolo" value="#555555" data-tooltip="Specifies what color should be used for the barrel. WARNING: Does not save to export. Yet.">
+		<input type="button" class="editbuttons tanksettings pos11 presetred" id="setscolorred" onclick="setSColor('#e03e41')" title="Red Team" />
+		<input type="button" class="editbuttons tanksettings pos11 presetblue" id="setscolorblue" onclick="setSColor('#3ca4cb')" title="Blue Team" />
+		<input type="button" class="editbuttons tanksettings pos11 presetgreen" id="setscolorgreen" onclick="setSColor('#8abc3f')" title="Green Team" />
+		<input type="button" class="editbuttons tanksettings pos11 presetpurple" id="setscolorpurple" onclick="setSColor('#cc669c')" title="Purple Team" />
+		<input type="button" class="editbuttons tanksettings pos11 presetyellow" id="setscoloryellow" onclick="setSColor('#FFEB69')" title="Arena Closer/No Team" />
+		<input type="button" class="editbuttons tanksettings pos11 presetlightgrey" id="setscolorlightgrey" onclick="setSColor('#C0C0C0')" title="Fallen Tank" />
+		<input type="button" class="editbuttons tanksettings pos11 presetpalered" id="setscolorpalered" onclick="setSColor('#FC7677')" title="Defender" />
+		<input type="button" class="editbuttons tanksettings pos11 presetviolet" id="setscolorviolet" onclick="setSColor('#F177DD')" title="Guardian" />
+		<input type="button" class="editbuttons tanksettings pos11 presetgrey" id="setscolorgrey" onclick="setSColor('#999999')" title="Grey" />
+		<input type="button" class="editbuttons tanksettings pos11 presetdarkgrey" id="setscolordarkgrey" onclick="setSColor('#555555')" title="Border Grey" />
+		<input type="button" class="editbuttons tanksettings pos11 presetbrown" id="setscolorbrown" onclick="setSColor('#D68165')" title="Brown Team(Removed)" />
+
+		<p class="editbuttons tanksettings pos8label"><b>Luminance </b><span data-tooltip="Sets the border color difference for the 'New' border scheme. Default is -0.2. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
+		<input type="range" min="-3" max="3" value="-0.2" step="0.1" class="editbuttons tanksettings pos8 slider" id="luminance">
+
 		<!-- Barrel menu -->
 		<p class="editbuttons barrelsettings pos1label" id="traplabel"><b>Barrel </b><span data-tooltip="Specifies what type of barrel you want to place." class="info">ⓘ</span></p>
 		<select class="editbuttons barrelsettings pos1" id="bullet" data-tooltip="Specifies what type of barrel you want to place.">

@@ -336,6 +336,8 @@ function clearObject() {
 	document.getElementById("shape").value = "circle";
 	document.getElementById("color").value = "#3ca4cb";
 	document.getElementById("bcolo").value = "#a7a7a7";
+	document.getElementById("scolo").value = "#555555";
+	document.getElementById("luminance").value = -0.2;
 	barrels = [];
 }
 
@@ -375,6 +377,8 @@ function importObject() {
 	document.getElementById("shape").value = "circle";
 	document.getElementById("color").value = "#3ca4cb";
 	document.getElementById("bcolo").value = "#a7a7a7";
+	document.getElementById("scolo").value = "#555555";
+	document.getElementById("luminance").value = -0.2;
 	barrels = [];
 
 	// Barrels

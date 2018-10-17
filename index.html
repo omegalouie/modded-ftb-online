@@ -47,10 +47,10 @@
 		<!-- Settings menu -->
 		<p class="editbuttons settingssettings infomation warning">These options can break the game!<br /> None of the settings here will ever be saved to export.</p>
 
-		<p class="editbuttons settingssettings pos5label"><b>Shape spawn rate </b><span data-tooltip="Specifies the rate that shapes spawn. Default: 120" class="info">ⓘ</span></p>
+		<p class="editbuttons settingssettings pos5label"><b>Shape Spawn </b><span data-tooltip="Specifies the rate that shapes spawn. Default: 120" class="info">ⓘ</span></p>
 		<textarea class="editbuttons settingssettings pos5" id="shaperate" rows="1" cols="10" placeholder="0" data-tooltip="Specifies the rate that shapes spawn. Default: 120">120</textarea>
 		
-		<p class="editbuttons settingssettings pos6label"><b>Shift Increments </b><span data-tooltip="Specifies the increment you rotate the barrels while holding shift. Measured in degrees. Default: 7.5" class="info">ⓘ</span></p>
+		<p class="editbuttons settingssettings pos6label"><b>Shift Inc. </b><span data-tooltip="Specifies the increment you rotate the barrels while holding shift. Measured in degrees. Default: 7.5" class="info">ⓘ</span></p>
 		<textarea class="editbuttons settingssettings pos6" id="increment" rows="1" cols="10" placeholder="0" data-tooltip="Specifies the increment you rotate the barrels while holding shift. Measured in degrees. Default: 7.5">7.5</textarea>
 
 		<button class="editbuttons settingssettings pos7label" onclick="clearShapes()" >Clear Shapes</button>
@@ -60,6 +60,9 @@
 		<!-- Changelog -->
 		<p class="editbuttons changelog pos1label"><b>Changelog</b><span data-tooltip="Originally created by iblobtouch, modded by Fillygroove" class="info">ⓘ</span></p>
 		<textarea class="editbuttons changelog pos1 scrollbox textarea" readonly id="change">
+		Modded FTB v1.3.3
+•Added a single Body Type.
+•There is now a blank option at the bottom of the Body dropbox for debugging purposes.
 		Modded FTB v1.3.2
 •Edited the Body Presets extensively.
 •Edited the Body/Color menu.
@@ -120,7 +123,9 @@
 			<option value="boomer">Boom. Trap</option>
 			<option value="rect">Rectangle</option>
 			<option value="drive">Drive</option>
-			<option value="t18">test-u18</option>
+			<option value="megasmash">Mega Smasher</option>			
+			<option value="t18"></option>
+
 		</select>
 		
      		<p class="editbuttons tanksettings pos3label"><b>Body Color </b></p>
@@ -189,7 +194,7 @@
 			<option value="bullet">Gun</option> 
   			<option value="trap">Trap Layer</option>
   			<option value="drone">Drone Maker</option>
-			<option value="necro">Necro Drone Maker</option>
+			<option value="necro">Sunchip Maker</option>
 			<option value="auto">Auto Turret</option>
 		</select>
 		
@@ -222,6 +227,9 @@
 		
 		<p class="editbuttons barrelsettings pos10label"><b>Delay </b><span data-tooltip="Specifies the delay before the cannon can first fire." class="info">ⓘ</span></p>
 		<textarea class="editbuttons barrelsettings pos10" id="basedelay" rows="1" cols="10"  placeholder="0" data-tooltip="Specifies the delay before the cannon can first fire.">0</textarea>
+		
+<!--		<p class="editbuttons barrelsettings pos11label"><b>Aspect </b><span data-tooltip="Specifies how the barrel itself is shaped. Currently only works for regular Barrels. WARNING: Does not export. Yet." class="warninginfo">ⓘ</span></p>
+		<textarea class="editbuttons barrelsettings pos11" id="aspect" rows="1" cols="10"  placeholder="1" data-tooltip="Specifies how the barrel itself is shaped. Currently only works for regular Barrels. WARNING: Does not export. Yet.">1</textarea>-->
 		
 		<!-- Bullet menu -->
 		<p class="editbuttons bulletsettings pos1label"><b>Bullet Size </b><span data-tooltip="Specifies the size of the projectiles this cannon fires." class="info">ⓘ</span></p>

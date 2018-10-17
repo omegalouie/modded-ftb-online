@@ -679,14 +679,14 @@ function drawTank() {
 			drawPoly(tankpointx, tankpointy, tanksize/1.5, 45, document.getElementById("bcolo").value, 4)
 		}
 	}
-	if (shape === "t18") {
+	if (shape === "megasmash") {
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
 		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			drawPoly(mouse.x, mouse.y, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 4)
-		} else {
-			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("scolo").value, 4)
+			drawConc(tankpointx, tankpointy, tanksize*1.4, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+270), document.getElementById("scolo").value, 6, (tanksize+6)/1.01)
+			} else {
+			drawConc(tankpointx, tankpointy, tanksize*1.4, 270, document.getElementById("scolo").value, 6, (tanksize+6)/1.01)
 		}
 		ctx.save();
 		ctx.beginPath();
@@ -696,6 +696,22 @@ function drawTank() {
 		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
 		ctx.restore();
 		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
+	}
+	if (shape === "t18") {
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, (tanksize * 1.5) + (mouse.x + mouse.y), (angle(tankpointx, tankpointy, mouse.x, mouse.y)), "#555555", 6)
+		} else {
+			drawPoly(tankpointx, tankpointy, (tanksize * 1.5) + (mouse.x + mouse.y), (angle(tankpointx, tankpointy, mouse.x, mouse.y)), "#555555", 6)
+		}
+		ctx.save();
+		ctx.beginPath();
+		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.clip();
+		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
+		ctx.restore();
+		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
+
 	}
 	//Draw the body of the tank on top of everything.
 	

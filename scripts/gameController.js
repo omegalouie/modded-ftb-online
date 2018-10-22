@@ -351,10 +351,14 @@ function drawTank() {
 		}
 
 		if ((bullets[n].type === 1) && (bullets[n].speed > 0)) {
-			bullets[n].speed -= bullets[n].speed * 0.005;
+			bullets[n].speed -= bullets[n].speed *  (-document.getElementById("acceleration").value + 0.05);
 			//If it's a trap, decrease speed each tick.
 		}
 
+		if (((bullets[n].type === 0) || (bullets[n].type === 2) || (bullets[n].type === 3) || (bullets[n].type === 4)) && (bullets[n].speed !== 0)) {
+			bullets[n].speed += (document.getElementById("acceleration").value);
+			//If it's a trap, decrease speed each tick.
+		}
 		if (((bullets[n].type === 2) || (bullets[n].type === 3)) && (mouse.rightdown === false)) {
 			bullets[n].targetx = mouse.x;
 			bullets[n].targety = mouse.y;
@@ -509,6 +513,47 @@ function drawTank() {
 			drawPoly(tankpointx, tankpointy, tanksize+12, 45, document.getElementById("color").value, 4)
 		}
 }
+
+	if (shape === "triangle") {
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize+9, (angle(tankpointx, tankpointy, mouse.x, mouse.y)-30), document.getElementById("color").value, 3)
+			} else {
+			drawPoly(tankpointx, tankpointy, tanksize+9, -30, document.getElementById("color").value, 3)
+		}
+}
+	if (shape === "pentagon") {
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize+10, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+18), document.getElementById("color").value, 5)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize+10, 18, document.getElementById("color").value, 5)
+		}
+}
+	if (shape === "hexagon") {
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize+12, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("color").value, 6)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize+12, 0, document.getElementById("color").value, 6)
+		}
+}
+	if (shape === "heptagon") {
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize+14, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+(((360/7)/2)-90)), document.getElementById("color").value, 7)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize+14, ((360/7)/2)-90, document.getElementById("color").value, 7)
+		}
+}
+	if (shape === "mothership") {
+		ctx.globalAlpha = tankalpha;
+		if (editmode === false) {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("color").value, 16)
+		} else {
+			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("color").value, 16)
+		}
+}
 	if (shape === "smasher") {
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
@@ -528,30 +573,6 @@ function drawTank() {
 		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
 	
-	if (shape === "triangle") {
-		ctx.globalAlpha = tankalpha;
-		if (editmode === false) {
-			drawPoly(tankpointx, tankpointy, tanksize+9, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+210), document.getElementById("color").value, 3)
-			} else {
-			drawPoly(tankpointx, tankpointy, tanksize+9, 210, document.getElementById("color").value, 3)
-		}
-}
-	if (shape === "pentagon") {
-		ctx.globalAlpha = tankalpha;
-		if (editmode === false) {
-			drawPoly(tankpointx, tankpointy, tanksize+10, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+18), document.getElementById("color").value, 5)
-		} else {
-			drawPoly(tankpointx, tankpointy, tanksize+10, 18, document.getElementById("color").value, 5)
-		}
-}
-	if (shape === "mothership") {
-		ctx.globalAlpha = tankalpha;
-		if (editmode === false) {
-			drawPoly(tankpointx, tankpointy, tanksize*1.3, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("color").value, 16)
-		} else {
-			drawPoly(tankpointx, tankpointy, tanksize*1.3, 0, document.getElementById("color").value, 16)
-		}
-}
 	if (shape === "spike") {
 		ctx.save();
 		ctx.globalAlpha = tankalpha;
@@ -596,6 +617,24 @@ function drawTank() {
 		ctx.restore();
 		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
+	if (shape === "megasmash") {
+		ctx.save();
+		ctx.globalAlpha = tankalpha;
+		ctx.fillStyle = document.getElementById("scolo").value;
+		if (editmode === false) {
+			drawConc(tankpointx, tankpointy, tanksize*1.4, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("scolo").value, 6, (tanksize+6)/1.01)
+			} else {
+			drawConc(tankpointx, tankpointy, tanksize*1.4, 0, document.getElementById("scolo").value, 6, (tanksize+6)/1.01)
+		}
+		ctx.save();
+		ctx.beginPath();
+		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.clip();
+		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
+		ctx.restore();
+		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
+	}
 	if (shape === "dominator") {
 		ctx.save();
 		ctx.beginPath();
@@ -606,15 +645,7 @@ function drawTank() {
 		ctx.restore();
 		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
 	}
-	if (shape === "hexagon") {
-		ctx.globalAlpha = tankalpha;
-		if (editmode === false) {
-			drawPoly(tankpointx, tankpointy, tanksize+6, (angle(tankpointx, tankpointy, mouse.x, mouse.y)), document.getElementById("color").value, 6)
-		} else {
-			drawPoly(tankpointx, tankpointy, tanksize+6, 0, document.getElementById("color").value, 6)
-		}
-}
-	if (shape === "base") {
+		if (shape === "base") {
 		ctx.save();
 		ctx.beginPath();
 		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
@@ -679,29 +710,20 @@ function drawTank() {
 			drawPoly(tankpointx, tankpointy, tanksize/1.5, 45, document.getElementById("bcolo").value, 4)
 		}
 	}
-	if (shape === "megasmash") {
-		ctx.save();
+	if (shape === "8star") {
 		ctx.globalAlpha = tankalpha;
-		ctx.fillStyle = document.getElementById("scolo").value;
 		if (editmode === false) {
-			drawConc(tankpointx, tankpointy, tanksize*1.4, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+270), document.getElementById("scolo").value, 6, (tanksize+6)/1.01)
+			drawConc(tankpointx, tankpointy, tanksize+8, (angle(tankpointx, tankpointy, mouse.x, mouse.y)+270), document.getElementById("color").value, 8, (tanksize+8)/1.3)
 			} else {
-			drawConc(tankpointx, tankpointy, tanksize*1.4, 270, document.getElementById("scolo").value, 6, (tanksize+6)/1.01)
+			drawConc(tankpointx, tankpointy, tanksize+8, 270, document.getElementById("color").value, 8, (tanksize+8)/1.3)
 		}
-		ctx.save();
-		ctx.beginPath();
-		ctx.arc(tankpointx, tankpointy, tanksize, 0, Math.PI * 2, true);
-		ctx.closePath();
-		ctx.clip();
-		ctx.clearRect(tankpointx - tanksize, tankpointy - tanksize, tanksize * 2, tanksize * 2);
-		ctx.restore();
-		drawBullet(tankpointx, tankpointy, tanksize, tankalpha);
-	}
-	if (shape === "t18") {
+}
+	//Point Debugging
+	if (document.getElementById("shape").value === "debug") {
 		if (editmode === false) {
-			drawPoly(tankpointx, tankpointy, (tanksize * 1.5) + (mouse.x + mouse.y), (angle(tankpointx, tankpointy, mouse.x, mouse.y)), "#555555", 6)
+			drawConc(tankpointx, tankpointy, (tanksize * 1.5) + ((mouse.x + mouse.y)/64), 0, "#555555", 2, (tanksize+2)/3)
 		} else {
-			drawPoly(tankpointx, tankpointy, (tanksize * 1.5) + (mouse.x + mouse.y), (angle(tankpointx, tankpointy, mouse.x, mouse.y)), "#555555", 6)
+			drawConc(tankpointx, tankpointy, (tanksize * 1.5) + ((mouse.x + mouse.y)/64), 0, "#555555", 2, (tanksize+2)/3)
 		}
 		ctx.save();
 		ctx.beginPath();

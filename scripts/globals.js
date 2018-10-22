@@ -119,33 +119,69 @@ function Shape(x, y, random) {
 	var stype = 0;
 
 	//Yellow Square
-	if (random < 0.65) {
+	if (random < 0.50) {
 		stype = 0;
 		this.size = 20;
 		this.health = 100;
 		this.maxhealth = 100;
-
+	
+	//Egg
+	} else if (random < 0.60) {
+		stype = 8;
+		this.size = 8;
+		this.health = 50;
+		this.maxhealth = 50;
+		
 	//Red Triangle
-	} else if (random < 0.90) {
+	} else if (random < 0.70) {
 		stype = 1;
 		this.size = 20;
 		this.health = 300;
 		this.maxhealth = 300;
 
 	//Blue Pentagon
-	} else if (random < 0.995) {
+	} else if (random < 0.82) {
 		stype = 2;
 		this.size = 36;
 		this.health = 1400;
 		this.maxhealth = 1400;
+	
+	//Hexagon
+	} else if (random < 0.84) {
+		stype = 7;
+		this.size = 52;
+		this.health = 1700;
+		this.maxhealth = 1700;
+
+	//Heptagon
+	} else if (random < 0.86) {
+		stype = 9;
+		this.size = 67;
+		this.health = 2000;
+		this.maxhealth = 2000;
+
+	//Octagon
+	} else if (random < 0.88) {
+		stype = 10;
+		this.size = 83;
+		this.health = 2300;
+		this.maxhealth = 2300;
+
+	//Nonagon
+	} else if (random < 0.90) {
+		stype = 11;
+		this.size = 83;
+		this.health = 2600;
+		this.maxhealth = 2600;
 
 	//Blue Alpha Pentagon
-	} else if (random < 0.9990) {
+	} else if (random < 0.9999) {
 		stype = 3;
 		this.size = 85;
 		this.health = 20000;
 		this.maxhealth = 20000;
 
+		
 	//Green Square
 	} else if (random < 0.99993) {
 		stype = 4;
@@ -335,9 +371,9 @@ function clearObject() {
 	document.getElementById("body").value = 32;
 	document.getElementById("shape").value = "circle";
 	document.getElementById("color").value = "#3ca4cb";
-	document.getElementById("bcolo").value = "#a7a7a7";
+	document.getElementById("bcolo").value = "#999999";
 	document.getElementById("scolo").value = "#555555";
-	document.getElementById("luminance").value = -0.2;
+	document.getElementById("luminance").value = -0.4;
 	barrels = [];
 }
 
@@ -376,9 +412,9 @@ function importObject() {
 	document.getElementById("body").value = 32;
 	document.getElementById("shape").value = "circle";
 	document.getElementById("color").value = "#3ca4cb";
-	document.getElementById("bcolo").value = "#a7a7a7";
+	document.getElementById("bcolo").value = "#999999";
 	document.getElementById("scolo").value = "#555555";
-	document.getElementById("luminance").value = -0.2;
+	document.getElementById("luminance").value = -0.4;
 	barrels = [];
 
 	// Barrels

@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<!--If you remove the following line, the code might break in some browsers.-->
 		<meta charset="utf8" />
-		<meta name="description" content="FTB but modded. Prepare your anus." />
+		<meta name="description" content="FTB but modded." />
 		<meta name="keywords" content="diep.io,tank,ftb,fantasy tank,io" />
 	</head>
 	<body onload="onload()">
@@ -60,6 +60,13 @@
 		<!-- Changelog -->
 		<p class="editbuttons changelog pos1label"><b>Changelog</b><span data-tooltip="Originally created by iblobtouch, modded by Fillygroove" class="info">ⓘ</span></p>
 		<textarea class="editbuttons changelog pos1 scrollbox textarea" readonly id="change">
+		Modded FTB v1.3.4
+•Fixed Trap Physics.
+•Edited the Debug body type.
+•Readded the new Polygons.
+•Rearranged the body types.
+•Added a few new Body Types.
+•Next update will have Invisibility fixed.
 		Modded FTB v1.3.3
 •Added a single Body Type.
 •There is now a blank option at the bottom of the Body dropbox for debugging purposes.
@@ -108,24 +115,25 @@
 		<select class="editbuttons tanksettings pos2" id="shape" data-tooltip="Specifies the type of body should be used.">
 			<option value="circle">Circle</option> 
   			<option value="square">Square</option>
-  			<option value="smasher">Smasher</option>
-			<option value="spike">Spike</option>
 			<option value="triangle">Triangle</option>
 			<option value="pentagon">Pentagon</option>
-			<option value="mothership">Mothership</option>
-			<option value="landmine">Landmine</option>
-			<option value="dominator">Dominator</option>
 			<option value="hexagon">Hexagon</option>
+			<option value="heptagon">Heptagon</option>
+			<option value="mothership">Mothership</option>
+			<option value="rect">Rectangle</option>
+  			<option value="smasher">Smasher</option>
+			<option value="megasmash">M. Smasher</option>			
+			<option value="landmine">Landmine</option>
+			<option value="spike">Spike</option>
+			<option value="dominator">Dominator</option>
 			<option value="base">Base</option>
 			<option value="trap">Trap</option>
 			<option value="build">Build. Trap</option>
 			<option value="star">Star</option>
 			<option value="boomer">Boom. Trap</option>
-			<option value="rect">Rectangle</option>
-			<option value="drive">Drive</option>
-			<option value="megasmash">Mega Smasher</option>			
-			<option value="t18"></option>
-
+			<option value="8star">Drive</option>
+			<option value="8star">8-Star</option>
+			<option value="debug"></option>
 		</select>
 		
      		<p class="editbuttons tanksettings pos3label"><b>Body Color </b></p>
@@ -185,16 +193,19 @@
 		<input type="button" class="editbuttons tanksettings pos11 presetdarkgrey" id="setscolordarkgrey" onclick="setSColor('#555555')" title="Border Grey" />
 		<input type="button" class="editbuttons tanksettings pos11 presetbrown" id="setscolorbrown" onclick="setSColor('#D68165')" title="Brown Team(Removed)" />
 
-		<p class="editbuttons tanksettings pos8label"><b>Luminance </b><span data-tooltip="Sets the border color difference for the 'New' border scheme. Default is -0.2. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
-		<input type="range" min="-3" max="3" value="-0.2" step="0.1" class="editbuttons tanksettings pos8 slider" id="luminance">
-
+		<p class="editbuttons tanksettings pos10label"><b>Border Style </b><span data-tooltip="Sets the border color difference for the 'New' border scheme. Default is Arras. WARNING: Does not save to export. Yet." class="warninginfo">ⓘ</span></p>
+		<select class="editbuttons tanksettings pos10" id="luminance" data-tooltip="Sets the border color difference for the 'New' border scheme. Default is Arras. WARNING: Does not save to export. Yet.">
+			<option value="-0.4">Arras</option> 
+			<option value="-0.2">Diep</option> 
+			<option value="0">Borderless</option> 
+		</select>
 		<!-- Barrel menu -->
 		<p class="editbuttons barrelsettings pos1label" id="traplabel"><b>Barrel </b><span data-tooltip="Specifies what type of barrel you want to place." class="info">ⓘ</span></p>
 		<select class="editbuttons barrelsettings pos1" id="bullet" data-tooltip="Specifies what type of barrel you want to place.">
 			<option value="bullet">Gun</option> 
-  			<option value="trap">Trap Layer</option>
-  			<option value="drone">Drone Maker</option>
-			<option value="necro">Sunchip Maker</option>
+  			<option value="trap">Launcher</option>
+  			<option value="drone">Drone Spwaner</option>
+			<option value="necro">Necro Spawner</option>
 			<option value="auto">Auto Turret</option>
 		</select>
 		
@@ -241,11 +252,14 @@
 		<p class="editbuttons bulletsettings pos3label"><b>Bullet Lifespan </b><span data-tooltip="Specifies the lifetime of the projectiles this cannon fires. Does not effect drones. Value is in seconds." class="info">ⓘ</span></p>
 		<textarea class="editbuttons bulletsettings pos3" id="time" rows="1" cols="10"  placeholder="0" data-tooltip="Specifies the lifetime of the projectiles this cannon fires. Does not effect drones. Value is in seconds.">1</textarea>
 		
-		<p class="editbuttons bulletsettings pos4label"><b>Bullet Damage </b><span data-tooltip="Specifies the damage of the bullets this cannon fires. Squares=100HP  Triangles=300HP  Pentagons=1400HP" class="info">ⓘ</span></p>
-		<textarea class="editbuttons bulletsettings pos4" id="damage" rows="1" cols="10"  placeholder="0" data-tooltip="Specifies the damage of the bullets this cannon fires. Squares=100HP  Triangles=300HP  Pentagons=1400HP">65</textarea>
+		<p class="editbuttons bulletsettings pos5label"><b>Bullet Damage </b><span data-tooltip="Specifies the damage of the bullets this cannon fires. Squares=100HP  Triangles=300HP  Pentagons=1400HP" class="info">ⓘ</span></p>
+		<textarea class="editbuttons bulletsettings pos5" id="damage" rows="1" cols="10"  placeholder="0" data-tooltip="Specifies the damage of the bullets this cannon fires. Squares=100HP  Triangles=300HP  Pentagons=1400HP">65</textarea>
 		
-		<p class="editbuttons bulletsettings pos5label"><b>Toggle Inherit </b><span data-tooltip="Toggles if these values are used by the barrel or not. Uncheck to use these values. If left checked, these values will automatically be generated by the editor." class="info">ⓘ</span></p>
-		<div class="editbuttons bulletsettings pos5 toggle" style="visibility: hidden;">
+<!--		<p class="editbuttons bulletsettings pos6label"><b>Bullet Acceleration </b><span data-tooltip="Specifies the acceleration of bullets." class="info">ⓘ</span></p>
+		<textarea class="editbuttons bulletsettings pos6" id="acceleration" rows="1" cols="10"  placeholder="0" data-tooltip="Specifies the acceleration of bullets.">0</textarea>
+-->		
+		<p class="editbuttons bulletsettings pos4label"><b>Toggle Inherit </b><span data-tooltip="Toggles if these values are used by the barrel or not. Uncheck to use these values. If left checked, these values will automatically be generated by the editor." class="info">ⓘ</span></p>
+		<div class="editbuttons bulletsettings pos4 toggle" style="visibility: hidden;">
 			<input type="checkbox" value="None" id="use" name="check" checked="" />
 			<label for="use"></label>
 		</div>

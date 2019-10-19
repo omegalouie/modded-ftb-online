@@ -19,7 +19,7 @@ function drawStuff() {
 	}
 	if (editmode === true) {
 		ctx.save();
-		ctx.strokeStyle = "#C3593D";
+		ctx.strokeStyle = "#FF0000";
 		ctx.beginPath;
 		ctx.moveTo(tankpointx, tankpointy);
 		ctx.lineTo(c.width, tankpointy);

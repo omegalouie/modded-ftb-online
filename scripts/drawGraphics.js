@@ -1,5 +1,7 @@
-function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, image, colour) {
+function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, aspect, colour) {
     ctx.save();
+    length = Math.abs(length);
+    width = Math.abs(width);
     if (newGraph === false) {
         ctx.strokeStyle = "rgba(85, 85, 85, " + alpha + ")";
     } else {
@@ -20,58 +22,25 @@ function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, im
     } else {
         ctx.rotate(a * (Math.PI / 180));
     }
-
-    if (image === "leftTriangle") {
-        ctx.beginPath();
-        ctx.moveTo(xoffset + length / 2, -(width / 2) - yoffset);
-        ctx.lineTo(xoffset + length / 2, (width / 2) - yoffset);
-        ctx.lineTo(xoffset + length, (width / 2) - yoffset);
-        ctx.lineTo(xoffset + length / 2, -(width / 2) - yoffset);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-    } else if (image === "rightTriangle") {
-        ctx.beginPath();
-        ctx.moveTo(xoffset + length / 2, -(width / 2) - yoffset);
-        ctx.lineTo(xoffset + length / 2, (width / 2) - yoffset);
-        ctx.lineTo(xoffset + length, -(width / 2) - yoffset);
-        ctx.lineTo(xoffset + length / 2, -(width / 2) - yoffset);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-    } else if (image === "trap") {
-        ctx.beginPath();
-        ctx.moveTo(xoffset + length / 2, -(width / 2) - yoffset);
-        ctx.lineTo(xoffset + length / 2 + (length / 2), 0 - ((width * 1.5) + yoffset));
-        ctx.lineTo(xoffset + length / 2 + (length / 2), ((width * 1.5) - yoffset));
-        ctx.lineTo(xoffset + length / 2, (width / 2) - yoffset);
-        ctx.lineTo(xoffset + length / 2, -(width / 2) - yoffset);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-    } else if (image === "circle") {
-        ctx.rotate(0 * (Math.PI / 180));
-        ctx.beginPath();
-        ctx.arc(xoffset + length, yoffset, length / 2 + 2, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-    } else if (image === "single") {
-            ctx.fillRect(xoffset, 0 - ((width / 2) + yoffset), length, width);
-            ctx.strokeRect(xoffset, 0 - ((width / 2) + yoffset), length, width);
+//   if (type === 0) {
             ctx.beginPath();
-            ctx.moveTo(15 + xoffset, -(width) - yoffset);
-            ctx.lineTo(47.5 + xoffset, 0 - ((width / 2) + yoffset));
-            ctx.lineTo(47.5 + xoffset, ((width / 2) - yoffset));
-            ctx.lineTo(15 + xoffset, (width) - yoffset);
-            ctx.lineTo(15 + xoffset, -(width) - yoffset);
+			if (aspect > -1) {
+				ctx.moveTo(xoffset, -(width / 2) - yoffset);
+            	ctx.lineTo(xoffset + length, -(width / 2 * aspect) - yoffset);
+            	ctx.lineTo(xoffset + length, (width / 2 * aspect) - yoffset);
+            	ctx.lineTo(xoffset, (width / 2) - yoffset);
+            	ctx.lineTo(xoffset, -(width / 2) - yoffset);
+			} else {
+				ctx.moveTo(xoffset, -(width / 2 * -aspect) - yoffset);
+            	ctx.lineTo(xoffset + length, -(width / 2) - yoffset);
+            	ctx.lineTo(xoffset + length, (width / 2) - yoffset);
+            	ctx.lineTo(xoffset, (width / 2 * -aspect) - yoffset);
+            	ctx.lineTo(xoffset, -(width / 2 * -aspect) - yoffset);
+			}
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
-    } else {
-        if (type === 0) {
-            ctx.fillRect(xoffset, 0 - ((width / 2) + yoffset), length, width);
-            ctx.strokeRect(xoffset, 0 - ((width / 2) + yoffset), length, width);
+/*
         } else if (type === 1) {
             ctx.beginPath();
             ctx.moveTo(xoffset + length, -(width / 2) - yoffset);
@@ -108,9 +77,8 @@ function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, im
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
-        }
+        }*/
 
-    }
     ctx.restore();
 }
 
@@ -142,104 +110,6 @@ function drawBullet(x, y, size, transparency, color) {
     ctx.restore();
 }
 
-function drawTrap(x, y, size, angle, transparency, color) {
-    var bColor = "";
-
-    if (color === "#ffffff") {
-        bColor = document.getElementById("color").value;
-    } else {
-        bColor = color;
-    }
-
-
-    ctx.save();
-    if (newGraph === false) {
-        ctx.strokeStyle = "#555555";
-    } else {
-        ctx.strokeStyle = ColorLuminance(bColor, document.getElementById("luminance").value);
-    }
-    ctx.lineWidth = 5;
-    ctx.fillStyle = bColor;
-    ctx.globalAlpha = transparency;
-    ctx.translate(x, y);
-    ctx.beginPath();
-    ctx.moveTo(0, size / 3);
-    ctx.rotate(60 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(60 * (Math.PI / 180));
-    ctx.lineTo(0, size / 3);
-    ctx.rotate(60 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(60 * (Math.PI / 180));
-    ctx.lineTo(0, size / 3);
-    ctx.rotate(60 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(60 * (Math.PI / 180));
-    ctx.lineTo(0, size / 3);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-    ctx.restore();
-}
-
-function drawDrone(x, y, size, angle, color) {
-    var bColor = "";
-
-    if (color === "#ffffff") {
-        bColor = document.getElementById("color").value;
-    } else {
-        bColor = color;
-    }
-
-
-    ctx.save();
-    if (newGraph === false) {
-        ctx.strokeStyle = "#555555";
-    } else {
-        ctx.strokeStyle = ColorLuminance(bColor, document.getElementById("luminance").value);
-    }
-    ctx.lineWidth = 5;
-    ctx.fillStyle = bColor;
-    ctx.translate(x, y);
-    ctx.beginPath();
-    ctx.rotate(angle * (Math.PI / 180));
-    ctx.moveTo(0, size);
-    ctx.rotate(120 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(120 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(120 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-    ctx.restore();
-}
-
-function drawNecro(x, y, size, angle, color) {
-    var bColor = "";
-
-    if (color === "#ffffff") {
-        bColor = document.getElementById("color").value;
-    } else {
-        bColor = color;
-    }
-
-    ctx.save();
-    ctx.fillStyle = bColor;
-    if (newGraph === false) {
-        ctx.strokeStyle = "#555555";
-    } else {
-        ctx.strokeStyle = ColorLuminance(bColor, document.getElementById("luminance").value);
-    }
-    ctx.lineWidth = 10;
-    ctx.translate(x, y);
-    ctx.rotate(angle * (Math.PI / 180));
-    ctx.strokeRect(-size / 2, -size / 2, size, size);
-    ctx.fillRect(-size / 2, -size / 2, size, size);
-    ctx.restore();
-}
-
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, r) {
     this.beginPath();
     this.moveTo(x + r, y);
@@ -251,94 +121,79 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, r)
     return this;
 };
 
-function drawPentagon(x, y, size, angle, color) {
+function drawPoly(x, y, size, angle, color, sides, alpha, bullet) {
     ctx.save();
+	var bColor = "";
+	if (bullet !== null) {	
+	    var bColor = "";
+    	if (color === "#ffffff") {
+    	    bColor = document.getElementById("color").value;
+	    } else {
+        	bColor = color;
+		}
+	} else bColor = color;
     if (newGraph === false) {
         ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
+        ctx.strokeStyle = ColorLuminance(bColor, document.getElementById("luminance").value);
     }
     ctx.lineWidth = 5;
-    ctx.fillStyle = color;
+    ctx.fillStyle = bColor;
     ctx.translate(x, y);
     ctx.rotate(angle * (Math.PI / 180));
     ctx.beginPath();
-    ctx.moveTo(0, size);
-    ctx.rotate(360 / 5 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(360 / 5 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(360 / 5 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(360 / 5 * (Math.PI / 180));
-    ctx.lineTo(0, size);
-    ctx.rotate(360 / 5 * (Math.PI / 180));
-    ctx.lineTo(0, size);
+    ctx.rotate((sides % 2 ? 270 : 180 / sides) * Math.PI / 180);
+    for (i = 0; i < sides; i++) {
+        ctx.rotate((360 / sides) * (Math.PI / 180));
+        ctx.lineTo(0, size);
+    }
+    ctx.globalAlpha = alpha;
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
     ctx.restore();
 }
 
-function drawPoly(x, y, size, angle, color, sides) {
-    ctx.save();
+function drawConc(x, y, size, angle, color, sides, alpha, bullet) {
+    ctx.save();	
+	var bColor = "";
+	if (bullet !== null) {	
+	    var bColor = "";
+    	if (color === "#ffffff") {
+    	    bColor = document.getElementById("color").value;
+	    } else {
+        	bColor = color;
+		}
+	} else bColor = color;
     if (newGraph === false) {
         ctx.strokeStyle = "#555555";
     } else {
-        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
+        ctx.strokeStyle = ColorLuminance(bColor, document.getElementById("luminance").value);
     }
     ctx.lineWidth = 5;
-    ctx.fillStyle = color;
+    ctx.fillStyle = bColor;
     ctx.translate(x, y);
-    ctx.rotate(angle * (Math.PI / 180));
+	ctx.rotate(angle * (Math.PI / 180));
     ctx.beginPath();
-    for (i = 0; i < sides; i++) {
-        ctx.rotate((360 / sides) * (Math.PI / 180));
-        ctx.lineTo(0, size);
-    }
+	let dip = 1 - 6 / sides / sides;
+	sides = -sides;
+	ctx.rotate((sides % 2 ? 0 : 180 / sides) * Math.PI / 180);
+	for (let i = 0; i < sides; i++) {
+		let theta = (i + 1) / sides * 2 * Math.PI,
+			htheta = (i + .5) / sides * 2 * Math.PI,
+		c = {
+			x: size * dip * Math.cos(htheta),
+			y: size * dip * Math.sin(htheta)
+		},
+		p = {
+			x: size * Math.cos(theta),
+			y: size * Math.sin(theta)
+		};
+		ctx.quadraticCurveTo(c.x, c.y, p.x, p.y);
+	}
+    ctx.globalAlpha = alpha;
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
     ctx.restore();
-}
-function drawConc(x, y, size, angle, color, sides, poly) {
-	ctx.save();
-	if (newGraph === false) {
-	   ctx.strokeStyle = "#555555";
-    } else {
-        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
-    }
-	ctx.lineWidth = 5;
-	ctx.fillStyle = color;
-	ctx.translate(x, y);
-	ctx.rotate(angle * (Math.PI / 180));
-	ctx.beginPath();
-	for (i=0; i<sides; i++) {
-	ctx.rotate(360/(sides*2) * (Math.PI / 180));
-	ctx.lineTo(0, poly);
-	ctx.rotate(360 /(sides*2) * (Math.PI / 180));
-	ctx.lineTo(0, size);
-	}
-	ctx.closePath();
-	ctx.fill();
-	ctx.stroke();
-	ctx.restore();
-}
-function drawRect(x, y, size, angle, color) {
-	ctx.save();
-	if (newGraph === false) {
-	   ctx.strokeStyle = "#555555";
-    } else {
-        ctx.strokeStyle = ColorLuminance(color, document.getElementById("luminance").value);
-    }
-	ctx.lineWidth = 5;
-	ctx.fillStyle = color;
-	ctx.translate(x, y);
-	ctx.rotate(angle * (Math.PI / 180));
-	ctx.beginPath();
-	ctx.rect(-size/2,-size,size,size*2);
-	ctx.closePath();
-	ctx.fill();
-	ctx.stroke();
-	ctx.restore();
 }

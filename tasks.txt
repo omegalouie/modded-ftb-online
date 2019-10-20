@@ -3,7 +3,13 @@
 √ make negative aspect affect the opposite side
 √ fix the weirdness of colors
 √ fix traps acting like bullets
+√ update readme.md
+√ add swarms
+√ skimmer missiles
+make the missiles fire
 fix the strange bent part of the negative shapes
 rework turrets
 remove shell color due to it being useless
-skimmer missiles
+builder blocks
+boomer boomerangs
+acid and chiller bullets

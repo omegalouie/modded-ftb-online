@@ -24,7 +24,6 @@
     <meta charset="utf8" />
     <meta name="description" content="Fantasy Tank Builder. Special thanks to IBlobTouch, Acarii, Likcoras, Normalize.CSS, Aryamanarora, and ericw31415 for working on the original, unmodded version of FTB." />
     <meta name="keywords" content="diep.io,tank,ftb,fantasy tank,io" />
-    <meta name="author" content="iblobtouch" />
 </head>
 
 <body onload="onload()">
@@ -160,10 +159,12 @@
     <!-- Barrel menu -->
     <p class="editbuttons barrelsettings pos1label" id="traplabel"><b>Ammunition </b><span data-tooltip="Specifies what type of bullets you want your gun to use." class="info">ⓘ</span></p>
     <select class="editbuttons barrelsettings pos1" id="bullet" data-tooltip="Specifies what type of bullets you want your gun to use.">
-			<option value="bullet">Bullet</option> 
+			<option value="bullet">Bullet</option>
+			<option value="launch">Missile</option> 
   			<option value="trap">Trap</option>
   			<option value="drone">Drone</option>
 			<option value="necro">Sunchip</option>
+			<option value="swarm">Swarm</option>
 			<option value="flare">Flare</option>
 <!--			<option value="auto">Auto Turret</option>-->
 		</select>

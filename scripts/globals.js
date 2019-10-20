@@ -86,7 +86,7 @@ function Barrel(a, type, size, speed, time) {
 }
 var barrels = [];
 //Array containing all the barrels, each entry is a Barrel object.
-function Bullet(n, size, speed, time, x, y, targetx, targety, spr, color) {
+function Bullet(n, size, speed, time, x, y, targetx, targety, spr, color, barrel) {
 	this.xoffset = barrels[n].xoffset;
 	this.yoffset = barrels[n].yoffset;
 	this.x = x;

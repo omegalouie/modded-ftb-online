@@ -217,7 +217,7 @@ function drawTank() {
 			for (var i = 0; i < bullets.length; i += 1) {
 				if ((shapes[n].x + shapes[n].size + shapes[n].accelx + (offset.totalx - bullets[i].initoffx) >= bullets[i].x + (offset.totalx - bullets[i].initoffx)) && (shapes[n].x - shapes[n].size + (offset.totalx - bullets[i].initoffx) <= bullets[i].x + bullets[i].size + (offset.totalx - bullets[i].initoffx) + shapes[n].accelx)) {
 					if ((shapes[n].y + shapes[n].size + shapes[n].accely + (offset.totaly - bullets[i].initoffy) >= bullets[i].y + (offset.totaly - bullets[i].initoffy)) && (shapes[n].y - shapes[n].size + (offset.totaly - bullets[i].initoffy) <= bullets[i].y + bullets[i].size + (offset.totaly - bullets[i].initoffy) + shapes[n].accely)) {
-						console.log("Collision!");
+					//	console.log("Collision!");
 						if (shapes[n].health > bullets[i].damage) {
 							shapes[n].health -= bullets[i].damage;
 							shapes[n].accelx += Math.cos(angle(bullets[i].x, bullets[i].y, shapes[n].x, shapes[n].y) * (Math.PI / 180)) * (bullets[i].size / 10);
@@ -264,7 +264,7 @@ function drawTank() {
 				barrels[n].delayed = false;
 			}
 
-			if ((barrels[n].delay === 0) && (barrels[n].reload === 0) && (canfire === true) && (barrels[n].type < 2 || barrels[n].type > 3 || (((barrels[n].type === 2) && (dronelimit < parseFloat(validateField(document.getElementById("drones").value, 8, false)))) || ((barrels[n].type === 3) && (necrolimit < parseFloat(validateField(document.getElementById("necrodrones").value, 20, false))))))) {
+			if ((barrels[n].delay === 0) && (barrels[n].reload === 0) && (canfire === true) && (barrels[n].type < 2 || (barrels[n].type > 3 ) || (((barrels[n].type === 2) && (dronelimit < parseFloat(validateField(document.getElementById("drones").value, 8, false)))) || ((barrels[n].type === 3) && (necrolimit < parseFloat(validateField(document.getElementById("necrodrones").value, 20, false))))))) {
 				if (barrels[n].hasOwnProperty("knockback") === false) {
 					barrels[n].knockback = 0;
 				}
@@ -332,7 +332,7 @@ function drawTank() {
 
 	if ((autospin === true)) {
 		autoangle += 0.5;
-		console.log(autoangle + 180);
+//		console.log(autoangle + 180);
 	}
 
 	for (var n = 0; n < bullets.length; n += 1) {
@@ -340,9 +340,9 @@ function drawTank() {
 
 		var isclose = false;
 
-		if (bullets[n].type > 1 || bullets[n].type == 5) {
+		if (bullets[n].type > 1 || bullets[n].type == 5 || bullets[n].type == 6) {
 			for (var i = 0; i < bullets.length; i += 1) {
-				if ((bullets[i].type > 1 || bullets[n].type == 5) && (i != n) && (bullets[n].x >= bullets[i].x - bullets[i].size) && (bullets[n].x <= bullets[i].x + bullets[i].size) && (bullets[n].y >= bullets[i].y - bullets[i].size) && (bullets[n].y <= bullets[i].y + bullets[i].size)) {
+				if ((bullets[i].type > 1 || bullets[n].type == 5 || bullets[n].type == 6) && (i != n) && (bullets[n].x >= bullets[i].x - bullets[i].size) && (bullets[n].x <= bullets[i].x + bullets[i].size) && (bullets[n].y >= bullets[i].y - bullets[i].size) && (bullets[n].y <= bullets[i].y + bullets[i].size)) {
 					bullets[n].x += (bullets[n].x - bullets[i].x) * 0.05;
 					bullets[n].y += (bullets[n].y - bullets[i].y) * 0.05;
 				}
@@ -359,7 +359,7 @@ function drawTank() {
 			//If it's a flare, increase size and speed each tick.
 		}
 
-		if (((bullets[n].type === 2) || (bullets[n].type === 3)) && (mouse.rightdown === false)) {
+		if (((bullets[n].type === 2) || (bullets[n].type === 3) || (bullets[n].type === 7)) && (mouse.rightdown === false)) {
 			bullets[n].targetx = mouse.x;
 			bullets[n].targety = mouse.y;
 
@@ -369,7 +369,7 @@ function drawTank() {
 
 			bullets[n].initoffx = offset.totalx;
 			bullets[n].initoffy = offset.totaly;
-		} else if (((bullets[n].type === 2) || (bullets[n].type === 3)) && (mouse.rightdown === true)) {
+		} else if (((bullets[n].type === 2) || (bullets[n].type === 3) || (bullets[n].type === 7)) && (mouse.rightdown === true)) {
 			bullets[n].targetx = mouse.x;
 			bullets[n].targety = mouse.y;
 
@@ -405,33 +405,31 @@ function drawTank() {
 			bullets[n].initoffy = offset.totaly;
 		}
 		if (editmode === false) {
-			if (bullets[n].type === 0) {
+			if (bullets[n].type === 0) { // Bullet
 				drawBullet(bullets[n].x, bullets[n].y, bullets[n].size, bullets[n].transparency, bullets[n].color);
 			}
-			//Display as a bullet if it's a bullet.
-
-			if (bullets[n].type === 1) { //x, y, size, angle, color, sides, alpha
+			if (bullets[n].type === 1) { // Trap
 				drawConc(bullets[n].x, bullets[n].y, bullets[n].size, bullets[n].angle, bullets[n].color, -3, bullets[n].transparency);
 			}
-			//Display as a trap if it's a trap.
-
-			if (bullets[n].type === 2) {
+			if (bullets[n].type === 2 || bullets[n].type === 7) { // Drone
 				drawPoly(bullets[n].x, bullets[n].y, bullets[n].size, angle(bullets[n].x, bullets[n].y, mouse.x, mouse.y), bullets[n].color, 3, bullets[n].transparency, true);
 			}
-			//Display as a trap if it's a drone.
-
-			if (bullets[n].type === 3) {
+			if (bullets[n].type === 3) { // Sunchip
 				drawPoly(bullets[n].x, bullets[n].y, bullets[n].size, angle(bullets[n].x, bullets[n].y, mouse.x, mouse.y), bullets[n].color, 4, bullets[n].transparency, true);
 			}
-			//Display as a trap if it's a drone.
-
-			if (bullets[n].type === 4) {
+			if (bullets[n].type === 4) { // Turret
 				drawBullet(bullets[n].x, bullets[n].y, bullets[n].size, bullets[n].transparency, bullets[n].color);
 			}
-			
-			if (bullets[n].type === 5) {
+			if (bullets[n].type === 5) { // Flare
 				drawPoly(bullets[n].x, bullets[n].y, bullets[n].size, bullets[n].angle, bullets[n].color, 4, bullets[n].transparency, true);
 			}
+			if (bullets[n].type === 6) { // missile gun
+			drawBarrel(180, 0, 0, bullets[n].size, 2 * bullets[n].size, 1, false, 0, 1, '#888888', bullets[n].x, bullets[n].y, Math.atan2(bullets[n].targety, bullets[n].targetx) * 180 / Math.PI + bullets[n].bangle);	
+			if (input.f === true) {
+				barrels.splice(n, 1);
+			}
+			drawBullet(bullets[n].x, bullets[n].y, bullets[n].size, bullets[n].transparency, bullets[n].color);
+		}
 			//Display as a bullet if it's a bullet.
 		}
 		if (bullets[n].time <= 20) {
@@ -488,6 +486,10 @@ function drawTank() {
 		btype = 4;
 	} else if (document.getElementById("bullet").value === "flare") {
 		btype = 5;
+	} else if (document.getElementById("bullet").value === "launch") {
+		btype = 6;
+	} else if (document.getElementById("bullet").value === "swarm") {
+		btype = 7;
 	}
 
 	if (editmode === true) {
@@ -606,6 +608,10 @@ function placeBarrel() {
 		btype = 4;
 	} else if (document.getElementById("bullet").value === "flare") {
 		btype = 5;
+	} else if (document.getElementById("bullet").value === "launch") {
+		btype = 6;
+	} else if (document.getElementById("bullet").value === "swarm") {
+		btype = 7;
 	}
 
 	for (var n = 1; n <= mirrorBarrels; n += 1) {

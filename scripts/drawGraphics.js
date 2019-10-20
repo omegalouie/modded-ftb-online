@@ -1,7 +1,10 @@
-function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, aspect, colour) {
+function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, aspect, colour, objx, objy, angl) {
     ctx.save();
     length = Math.abs(length);
     width = Math.abs(width);
+  if(objx != undefined) this.objx = objx
+  if(objy != undefined) this.objy = objy
+  if(angl) this.angl = angl
     if (newGraph === false) {
         ctx.strokeStyle = "rgba(85, 85, 85, " + alpha + ")";
     } else {
@@ -10,9 +13,9 @@ function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, as
     ctx.lineWidth = 5;
     ctx.fillStyle = colour;
     ctx.globalAlpha = alpha;
-    ctx.translate(tankpointx, tankpointy, 0);
+    ctx.translate((objx != undefined ? this.objx : tankpointx), (objy != undefined ? this.objy : tankpointy),  0);
     if (editmode === false) {
-        ctx.rotate((angle(tankpointx, tankpointy, mouse.x, mouse.y) + a) * (Math.PI / 180));
+        ctx.rotate(!objx && !objy ? (angle(tankpointx, tankpointy, mouse.x, mouse.y) + a) * (Math.PI / 180) : (a+this.angl) * Math.PI/180);
     } else if ((isghost === true) && (shiftheld === true)) {
         //if ((a <= -172.5) || (a >= 172.5)) {
         //a = 180;

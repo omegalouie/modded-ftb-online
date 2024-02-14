@@ -2,7 +2,7 @@ function drawBarrel(a, xoffset, yoffset, width, length, alpha, isghost, type, as
     ctx.save();
     length = Math.abs(length);
     width = Math.abs(width);
-  if(objx != undefined) this.objx = objx
+  if(objx != undefined) this.objx = objx //this will change
   if(objy != undefined) this.objy = objy
   if(angl) this.angl = angl
     if (newGraph === false) {

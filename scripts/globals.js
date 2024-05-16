@@ -163,20 +163,20 @@ function Shape(x, y, random) {
 	} else if (random < 0.9999) {
 		stype = 3;
 		this.size = 85;
-		this.health = 20000;
-		this.maxhealth = 20000;
+		this.health = 25000;
+		this.maxhealth = 25000;
 		//Green Square
 	} else if (random < 0.99993) {
 		stype = 4;
 		this.size = 20;
-		this.health = 2000;
-		this.maxhealth = 2000;
+		this.health = 2100;
+		this.maxhealth = 2100;
 		//Green Triangle
 	} else if (random < 0.99996) {
 		stype = 5;
 		this.size = 25;
-		this.health = 6000;
-		this.maxhealth = 6000;
+		this.health = 6500;
+		this.maxhealth = 6500;
 		//Green Pentagon
 	} else {
 		stype = 6;

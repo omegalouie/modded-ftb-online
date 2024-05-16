@@ -8,4 +8,4 @@
 
 **Fillygroove** - Random additions that make no sense
 
-**omegalouie** - making it run on a server
+**omegalouie** - making it run on a server, balancing changes
